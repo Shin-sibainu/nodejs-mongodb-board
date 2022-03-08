@@ -1,17 +1,33 @@
-// console.log(axios);
 // data fetching
 const inputTextDOM = document.getElementById("inputTitle");
 const inputContentDOM = document.getElementById("inputContent");
 const submitButtonDOM = document.getElementById("submitButton");
 //formDomを追加する。
+const formDOM = document.querySelector(".form-section");
+const threadSectionDOM = document.querySelector(".thread-section");
 let inputText = "";
 let contentText = "";
 
 //最初はThreadを全て読み込む
 const getAllThreads = async () => {
   try {
-    const allThreads = await axios.get("/api/v1/threads");
+    console.log("show");
+    let allThreads = await axios.get("/api/v1/threads");
     console.log(allThreads);
+    let { data } = allThreads;
+    //出力
+    allThreads = data.map((thread) => {
+      const { title, content } = thread;
+      console.log(title);
+      return `
+      <div class="single-thread">
+          <h3>${title}</h3>
+          <p>${content}</p>
+        </div>
+      `;
+    });
+    //挿入
+    threadSectionDOM.innerHTML = allThreads;
   } catch (err) {
     console.log(err);
   }
@@ -28,7 +44,8 @@ inputContentDOM.addEventListener("change", (e) => {
   contentText = e.target.value;
 });
 
-submitButtonDOM.addEventListener("click", async () => {
+formDOM.addEventListener("submit", async (e) => {
+  e.preventDefault();
   if (inputText && inputContent) {
     console.log("success");
     //postメソッドで送信する。
@@ -37,7 +54,7 @@ submitButtonDOM.addEventListener("click", async () => {
       console.log(inputText);
       await axios.post("/ap1/v1/thread", {
         title: inputText,
-        content: inputContent,
+        content: contentText,
       });
       getAllThreads();
     } catch (err) {
