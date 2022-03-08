@@ -10,9 +10,7 @@ app.use(express.static("public"));
 app.use(express.json());
 
 mongoose
-  .connect(
-    "mongodb+srv://shincode:a@cluster0.0zogj.mongodb.net/threadBoard?retryWrites=true&w=majority"
-  )
+  .connect("あなたのMONGOURL")
   .then(() => console.log("DB Connected"))
   .catch((err) => console.log(err));
 

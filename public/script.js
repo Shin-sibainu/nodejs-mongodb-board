@@ -1,7 +1,6 @@
 // data fetching
 const inputTextDOM = document.getElementById("inputTitle");
 const inputContentDOM = document.getElementById("inputContent");
-const submitButtonDOM = document.getElementById("submitButton");
 //formDomを追加する。
 const formDOM = document.querySelector(".form-section");
 const threadSectionDOM = document.querySelector(".thread-section");
@@ -63,6 +62,7 @@ formDOM.addEventListener("submit", async (e) => {
       console.log(err);
     }
 
+    //投稿したらinputのvalueを削除
     inputText = "";
     contentText = "";
     inputTextDOM.value = "";
