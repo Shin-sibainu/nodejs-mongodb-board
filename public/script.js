@@ -16,16 +16,18 @@ const getAllThreads = async () => {
     console.log(allThreads);
     let { data } = allThreads;
     //出力
-    allThreads = data.map((thread) => {
-      const { title, content } = thread;
-      console.log(title);
-      return `
+    allThreads = data
+      .map((thread) => {
+        const { title, content } = thread;
+        console.log(title);
+        return `
       <div class="single-thread">
           <h3>${title}</h3>
           <p>${content}</p>
         </div>
       `;
-    });
+      })
+      .join("");
     //挿入
     threadSectionDOM.innerHTML = allThreads;
   } catch (err) {

@@ -10,6 +10,7 @@ body {
   width: 100%;
   height: 100vh;
   overflow-x: hidden;
+  background-color: #f6e7e7;
 }
 
 .board-section {
@@ -33,7 +34,7 @@ body {
 
 .thread-section .single-thread {
   margin-bottom: 20px;
-  box-shadow: 1px 0px 3px #474747;
+  box-shadow: 1px 0px 4px #201f1f;
   padding: 30px 20px;
   border-radius: 5px;
 }
